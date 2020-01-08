@@ -51,7 +51,7 @@ public class Searcher {
 
     private Query prepareQuery(String query) throws ParseException {
         Analyzer analyzer = new StandardAnalyzer();
-        var fieldsToSearch = new String[] {"title", "body"};
+        var fieldsToSearch = new String[] {"title"};
         MultiFieldQueryParser queryParser = new MultiFieldQueryParser(
                 fieldsToSearch,
                 analyzer
