@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for doc in docs %}
+    <div rt>
+        <div>
+            <a href="{{ doc.link }}">{{ doc.title }}</a>
+        </div>
+        <div>
+            <p>{{ doc.link}}</p>
+        </div>
+        <div>
+            <p>{{ doc.body }}</p>
+        </div>
+    </div>
+{% endfor %}
+
+</body>
+</html>
