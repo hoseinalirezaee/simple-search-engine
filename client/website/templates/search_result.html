@@ -1,23 +1,71 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/result-style.css" %}">
 </head>
 <body>
-{% for doc in docs %}
-    <div rt>
-        <div>
-            <a href="{{ doc.link }}">{{ doc.title }}</a>
+    <header>
+        <div class="row">
+            <div class="col-8">
+                <img src="{% static "img/logo.png" %}">
+               <form method="get" action="/searchResult/" style="display: inline; width: 100%">
+                    <input type="text" name="q">
+                    <button type="submit" id="search">search</button>
+               </form>
+            </div>
         </div>
-        <div>
-            <p>{{ doc.link}}</p>
-        </div>
-        <div>
-            <p>{{ doc.body }}</p>
-        </div>
-    </div>
-{% endfor %}
 
+    </header>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                {% for doc in docs %}
+                    <div class="news mb-3">
+                        <a href="{{ doc.link }}">{{ doc.title }}</a><br>
+                        <small>{{ doc.link }}</small>
+                        <p>{{ doc.body }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    {% if is_paginated %}
+        <nav aria-label="...">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?q={{ query }}&page={{ page_obj.previous_page_number }}">Previous</a>
+                </li>
+                {% endif %}
+
+                <li class="page-item page-link active">{{ page_obj.number }}</li>
+
+                <li class="page-item "><a class="page-link" href="#">2</a></li>
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?q={{ query }}&page={{ page_obj.next_page_number }}">Next</a>
+                    </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    {% endif %}
+
+    </div>
+    <footer>
+        <h4 class="text-center">goooooooooooood luck!</h4>
+    </footer>
+
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
 </body>
 </html>

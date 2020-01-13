@@ -1,13 +1,30 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/result-style.css" %}">
 </head>
 <body>
-    <form method="post" action="">
-        {% csrf_token %}
-        <input type="submit" value="start indexing">
-    </form>
+    
+    <div class="main-content">
+        <div class="main d-block">
+            <form method="get" action="/searchResult/">
+
+            <div class="btn">
+                <button type="submit" id="search">search</button>
+                <button type="button" id="index">index</button>
+                <button type="button" id="stopWord">stop world</button>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
 </body>
 </html>

@@ -1,0 +1,60 @@
+body{
+    text-align: left;
+    overflow-x: hidden;
+}
+header img{
+    width: 120px;
+    margin-right: 63px;
+}
+header{
+    padding: 15px;
+}
+header input{
+    width:400px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 7px 1px #ccc;
+    padding: 5px;
+
+}
+header button{
+    margin-left: 15px;
+    background-color: transparent;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 7px 10px;
+}
+header button:focus{
+    outline: none;
+}
+header button[name="search"]{
+    border: 2px solid #4285F4;
+    color: #4285F4;
+    font-weight: bold;
+}
+header button[name="index"]{
+    border: 2px solid #EA4335;
+    color: #EA4335;
+    font-weight: bold;
+}
+header button[name="stopWorld"]{
+    border: 2px solid #34A853;
+    color: #34A853;
+    font-weight: bold;
+}
+header button:active{
+    transform: scale(0.9);
+
+}
+nav{
+    margin:15px;
+}
+footer{
+    background-color: #909ba5;
+    padding: 50px;
+    color: #fefefe;
+}
+small{
+    color: #34A853;
+    font-weight: bold;
+}

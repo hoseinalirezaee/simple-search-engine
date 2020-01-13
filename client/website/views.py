@@ -6,6 +6,8 @@ from client import settings
 from pymongo import MongoClient
 from bson import ObjectId
 from website.models import Searcher, Indexer
+from django.views.generic import ListView
+from django.http import HttpRequest
 
 
 class Index(View):
@@ -17,19 +19,22 @@ class Index(View):
         return HttpResponse('Done'.encode('utf-8'))
 
 
-class Search(View):
+class MainPage(View):
 
-    def get(self, request):
+    def get(self, request: HttpRequest):
         return render(request, 'search.html')
 
-    def post(self, request):
-        query = request.POST.get('query', None)
-        if query:
-            docs = Searcher.search(query)
-            return render(request, 'search_result.html', context={'docs': docs})
-        return HttpResponse('None'.encode('utf-8'))
 
-    def getResutlFromDB(self, ids):
-        client = MongoClient('mongodb://hosein:123456@localhost:27017/admin')
-        cursor = client.index_test.data.find({'_id': ObjectId(ids[0])})
-        return [item for item in cursor]
+class SearchResult(ListView):
+    paginate_by = 10
+    context_object_name = 'docs'
+    template_name = 'search_result.html'
+
+    def get_queryset(self):
+        request: HttpRequest = self.request
+        query = request.GET.get('q', None)
+        self.extra_context = {'query': query}
+        docs = Searcher.search(query)
+        for doc in docs:
+            doc.body = doc.body[:130]
+        return docs

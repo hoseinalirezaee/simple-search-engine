@@ -1,14 +1,31 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>جست و جو</title>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/result-style.css" %}">
 </head>
 <body>
-    <form method="post" action="">
-        {% csrf_token %}
-        <input type="search" name="query">
-        <input type="submit">
-    </form>
+    
+    <div class="main-content">
+        <div class="logo">
+            <img src="{% static "img/logo.png" %}">
+        </div>
+        <div class="main d-block">
+            <form method="get" action="/searchResult/">
+                <input type="text" name="q"><br>
+            <div class="btn">
+                <button type="submit" id="search">search</button>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
 </body>
 </html>
