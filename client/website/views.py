@@ -7,7 +7,7 @@ from pymongo import MongoClient
 from bson import ObjectId
 from website.models import Searcher, Indexer
 from django.views.generic import ListView
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseRedirect
 
 
 class Index(View):
@@ -16,7 +16,19 @@ class Index(View):
 
     def post(self, request):
         Indexer.index()
-        return HttpResponse('Done'.encode('utf-8'))
+        context = {
+            'done': 'Indexing Done.'
+        }
+        return render(request, 'index.html', context=context)
+
+class StopWord(View):
+
+    def post(self, request):
+        Indexer.create_stopwords()
+        context = {
+            'done': 'Creating stop words done.'
+        }
+        return render(request, 'index.html', context=context)
 
 
 class MainPage(View):

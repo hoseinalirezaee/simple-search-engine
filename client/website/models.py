@@ -31,6 +31,13 @@ class Indexer(object):
              mongo_info['AUTH_DB'], mongo_info['DATA_DB'], mongo_info['DATA_COLLECTION']],
         )
 
+    @staticmethod
+    def create_stopwords():
+        process_return = run(
+            ['java', '-jar', INDEXER_PATH, INDEX_PATH, 'mongodb',
+             mongo_info['HOSTNAME'], str(mongo_info['PORT']), mongo_info['USERNAME'], mongo_info['PASSWORD'],
+             mongo_info['AUTH_DB'], mongo_info['DATA_DB'], mongo_info['DATA_COLLECTION'], '-stopword-only', '95'],
+        )
 
 class DatabaseConnect(object):
 

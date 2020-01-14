@@ -12,15 +12,25 @@
 <body>
     
     <div class="main-content">
+        {% if done %}
+            {{ done }}
+        {% endif %}
         <div class="main d-block">
-            <form method="get" action="/searchResult/">
-
             <div class="btn">
-                <button type="submit" id="search">search</button>
-                <button type="button" id="index">index</button>
-                <button type="button" id="stopWord">stop world</button>
+                <form method="post" action="/index/">
+                    {% csrf_token %}
+                    <div class="btn">
+                        <button type="submit" id="index" style="width: 200px">index</button>
+                    </div>
+                </form>
+
+                <form method="post" action="/stopword/">
+                    {% csrf_token %}
+                    <div class="btn">
+                        <button type="submit" id="stopWord" style="width: 200px">Create Stop Words</button>
+                    </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
 
