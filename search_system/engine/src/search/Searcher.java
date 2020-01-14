@@ -1,6 +1,7 @@
 package search;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.fa.PersianAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
@@ -50,7 +51,7 @@ public class Searcher {
     }
 
     private Query prepareQuery(String query) throws ParseException {
-        Analyzer analyzer = new StandardAnalyzer();
+        Analyzer analyzer = new PersianAnalyzer();
         var fieldsToSearch = new String[] {"title"};
         MultiFieldQueryParser queryParser = new MultiFieldQueryParser(
                 fieldsToSearch,
